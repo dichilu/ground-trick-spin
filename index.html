@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ground Trick Spin - v2.2.2 Final</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Dela+Gothic+One&family=Noto+Sans+TC:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+TC:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
@@ -31,8 +31,11 @@
             overflow: hidden;
         }
 
-        body.lang-ja, body.lang-zh {
-            font-family: 'Dela Gothic One', 'Noto Sans TC', sans-serif;
+        body.lang-zh {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        body.lang-ja {
+            font-family: 'Noto Sans JP', sans-serif;
         }
 
         * {
@@ -96,21 +99,45 @@
             display: inline-block;
         }
 
-        #title-main { font-size: 28px; margin-bottom: 20px; }
-        body.lang-ja #title-main, body.lang-zh #title-main { font-size: 40px; -webkit-text-stroke: 6px var(--mario-yellow); letter-spacing: 0px; }
+        /* === HUD labels === */
+        #label-challenger, #label-round { font-size: 8px; }
+        body.lang-zh #label-challenger, body.lang-zh #label-round,
+        body.lang-ja #label-challenger, body.lang-ja #label-round { font-size: 11px; }
 
-        body.lang-ja #label-complete, body.lang-ja #label-ranking, body.lang-ja #label-your-trick,
-        body.lang-zh #label-complete, body.lang-zh #label-ranking, body.lang-zh #label-your-trick {
-            font-size: 32px; -webkit-text-stroke: 6px var(--mario-yellow);
+        /* === Main Title === */
+        #title-main { font-size: 28px; margin-bottom: 20px; }
+        body.lang-zh #title-main, body.lang-ja #title-main {
+            font-size: 36px; -webkit-text-stroke: 5px var(--mario-yellow); letter-spacing: 0px; font-weight: 900;
         }
 
+        /* === Rating / Ranking page headings: use a simpler white style === */
+        #label-your-trick, #label-complete, #label-ranking, #label-next {
+            font-size: 14px;
+            color: #fff !important;
+            -webkit-text-stroke: 0 !important;
+            letter-spacing: 3px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 12px;
+            opacity: 0.85;
+        }
+        body.lang-zh #label-your-trick, body.lang-zh #label-complete,
+        body.lang-zh #label-ranking, body.lang-zh #label-next,
+        body.lang-ja #label-your-trick, body.lang-ja #label-complete,
+        body.lang-ja #label-ranking, body.lang-ja #label-next { font-size: 18px; letter-spacing: 1px; }
+
         @media (min-width: 640px) {
+            #label-challenger, #label-round { font-size: 10px; }
+            body.lang-zh #label-challenger, body.lang-zh #label-round,
+            body.lang-ja #label-challenger, body.lang-ja #label-round { font-size: 14px; }
             #title-main { font-size: 60px; -webkit-text-stroke: 12px var(--mario-yellow); margin-bottom: 40px; }
-            body.lang-ja #title-main, body.lang-zh #title-main { font-size: 70px; -webkit-text-stroke: 10px var(--mario-yellow); }
-            body.lang-ja #label-complete, body.lang-ja #label-ranking, body.lang-ja #label-your-trick,
-            body.lang-zh #label-complete, body.lang-zh #label-ranking, body.lang-zh #label-your-trick {
-                font-size: 60px; -webkit-text-stroke: 10px var(--mario-yellow);
-            }
+            body.lang-zh #title-main, body.lang-ja #title-main { font-size: 64px; -webkit-text-stroke: 8px var(--mario-yellow); }
+            #label-your-trick, #label-complete, #label-ranking, #label-next { font-size: 20px; }
+            body.lang-zh #label-your-trick, body.lang-zh #label-complete,
+            body.lang-zh #label-ranking, body.lang-zh #label-next,
+            body.lang-ja #label-your-trick, body.lang-ja #label-complete,
+            body.lang-ja #label-ranking, body.lang-ja #label-next { font-size: 26px; }
         }
 
         .btn-arcade {
@@ -136,11 +163,12 @@
             transform: none !important;
         }
 
-        body.lang-ja .btn-arcade, body.lang-zh .btn-arcade { font-size: 24px; padding: 24px 10px; }
+        /* btn-arcade CJK sizing */
+        body.lang-zh .btn-arcade, body.lang-ja .btn-arcade { font-size: 18px; padding: 18px 10px; }
 
         @media (min-width: 640px) {
             .btn-arcade { font-size: 24px; padding: 24px; border-width: 8px; }
-            body.lang-ja .btn-arcade, body.lang-zh .btn-arcade { font-size: 36px; padding: 30px 15px; }
+            body.lang-zh .btn-arcade, body.lang-ja .btn-arcade { font-size: 24px; padding: 22px 15px; }
         }
 
         .ver-info-text {
@@ -175,11 +203,11 @@
             padding: 2px;
         }
         
-        body.lang-ja .mode-box, body.lang-zh .mode-box { font-size: 14px; font-weight: 900; }
+        body.lang-zh .mode-box, body.lang-ja .mode-box { font-size: 11px; font-weight: 700; }
 
         @media (min-width: 640px) {
             .mode-box { font-size: 16px; border-width: 4px; padding: 6px; }
-            body.lang-ja .mode-box, body.lang-zh .mode-box { font-size: 26px; }
+            body.lang-zh .mode-box, body.lang-ja .mode-box { font-size: 18px; }
         }
 
         .mode-box.active { background: #fff !important; color: #000 !important; z-index: 10; }
@@ -229,11 +257,11 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        body.lang-ja .trick-inner, body.lang-zh .trick-inner { font-size: 16px; line-height: 1.15; font-weight: 900; }
+        body.lang-zh .trick-inner, body.lang-ja .trick-inner { font-size: 14px; line-height: 1.2; font-weight: 700; }
 
         @media (min-width: 640px) {
             .trick-inner { font-size: 20px; }
-            body.lang-ja .trick-inner, body.lang-zh .trick-inner { font-size: 24px; }
+            body.lang-zh .trick-inner, body.lang-ja .trick-inner { font-size: 20px; }
         }
 
         .box-red { background: #9c0c16; }
@@ -274,7 +302,8 @@
             font-family: 'Press Start 2P', cursive; background: #000; border: 4px solid #555;
             padding: 8px; color: #fff; text-align: center;
         }
-        body.lang-ja .led-panel, body.lang-zh .led-panel { font-family: 'Dela Gothic One', 'Noto Sans TC', sans-serif; }
+        body.lang-zh .led-panel { font-family: 'Noto Sans TC', sans-serif; }
+        body.lang-ja .led-panel { font-family: 'Noto Sans JP', sans-serif; }
         #hud-name { font-size: 12px; min-width: 100px; }
         @media (min-width: 640px) { #hud-name { font-size: 24px; min-width: 200px; } }
 
@@ -291,13 +320,19 @@
         }
         .hidden { display: none !important; }
 
+        /* Input & select: base uses pixel font; lang-select uses system font for CJK option display */
         input, select {
             background: #000 !important; border: 4px solid #fff !important; color: var(--mario-yellow) !important;
-            padding: 15px; font-size: 12px; width: 100%; outline: none; margin-bottom: 15px;
+            padding: 15px; font-size: 14px; width: 100%; outline: none; margin-bottom: 15px;
             text-align: center; appearance: none; -webkit-appearance: none; border-radius: 0;
         }
-        body.lang-ja input, body.lang-ja select,
-        body.lang-zh input, body.lang-zh select { font-size: 18px; }
+        /* lang-select options must be system font to render CJK characters */
+        #lang-select {
+            font-family: system-ui, 'Noto Sans TC', 'Noto Sans JP', sans-serif !important;
+            font-size: 14px !important;
+        }
+        body.lang-zh input:not(#lang-select), body.lang-zh select:not(#lang-select),
+        body.lang-ja input:not(#lang-select), body.lang-ja select:not(#lang-select) { font-size: 16px; }
 
         .star-rating { display: flex; gap: 10px; margin: 25px 0; z-index: 10; }
         /* 將空星星的顏色改為淺灰色，使其在深色背景上更明顯 */
@@ -311,8 +346,8 @@
             width: 100%; border-collapse: collapse; margin-top: 20px; 
             font-size: 10px; color: #fff; background: rgba(0,0,0,0.9); z-index: 10;
         }
-        body.lang-ja .leaderboard, body.lang-zh .leaderboard { font-size: 14px; }
-        @media (min-width: 640px) { body.lang-ja .leaderboard, body.lang-zh .leaderboard { font-size: 18px; } }
+        body.lang-zh .leaderboard, body.lang-ja .leaderboard { font-size: 13px; }
+        @media (min-width: 640px) { body.lang-zh .leaderboard, body.lang-ja .leaderboard { font-size: 16px; } }
         .leaderboard th, .leaderboard td { border: 2px solid #fff; padding: 10px; text-align: center; }
 
         .scene-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
@@ -344,11 +379,11 @@
     <div class="cabinet">
         <div class="flex justify-between mb-3 px-1 items-end">
             <div>
-                <p id="label-challenger" class="text-[8px] text-gray-400 mb-1 uppercase font-bold">CHALLENGER</p>
+                <p id="label-challenger" class="text-gray-400 mb-1 uppercase font-bold">CHALLENGER</p>
                 <div id="hud-name" class="led-panel">---</div>
             </div>
             <div class="text-right">
-                <p id="label-round" class="text-[8px] text-gray-400 mb-1 uppercase font-bold">ROUND</p>
+                <p id="label-round" class="text-gray-400 mb-1 uppercase font-bold">ROUND</p>
                 <div id="hud-round" class="led-panel text-yellow-400">0/0</div>
             </div>
         </div>
@@ -423,23 +458,23 @@
                 
                 <!-- 上方區塊：抽中的招式（佔 50%）-->
                 <div class="flex flex-col items-center justify-center flex-1 p-6">
-                    <h3 id="label-your-trick" class="mario-title-text text-xl md:text-3xl uppercase font-bold !mb-4">YOUR CHALLENGE TRICK IS</h3>
-                    <div class="bg-black/85 border-4 border-white p-4 md:p-6 w-11/12 md:w-4/5 shadow-[0_0_15px_rgba(255,255,255,0.4)] rounded-sm">
+                    <p id="label-your-trick" class="uppercase font-bold tracking-widest">YOUR CHALLENGE<br>TRICK IS</p>
+                    <div class="bg-black/85 border-4 border-white p-4 md:p-6 w-11/12 md:w-4/5 mt-4 rounded-sm">
                         <p id="rating-text" class="text-white text-center uppercase font-black leading-relaxed" style="text-shadow: 2px 2px 0 #000;"></p>
                     </div>
                 </div>
                 
                 <!-- 下方區塊：星數評分（佔 50%），加半透明黑底做區隔 -->
                 <div class="flex flex-col items-center justify-center flex-1 p-6" style="background: rgba(0,0,0,0.4);">
-                    <h3 id="label-complete" class="mario-title-text text-xl md:text-3xl uppercase font-bold !mb-4">TRICK RATING</h3>
-                    <div class="star-rating !mt-0 !mb-4">
+                    <p id="label-complete" class="uppercase font-bold tracking-widest">TRICK RATING</p>
+                    <div class="star-rating !mt-3 !mb-4">
                         <span class="star-icon" onclick="setStars(1)">★</span>
                         <span class="star-icon" onclick="setStars(2)">★</span>
                         <span class="star-icon" onclick="setStars(3)">★</span>
                         <span class="star-icon" onclick="setStars(4)">★</span>
                         <span class="star-icon" onclick="setStars(5)">★</span>
                     </div>
-                    <button id="confirm-rating-btn" disabled onclick="saveRating()" class="btn-arcade text-[18px] w-3/4">CONFIRM STARS</button>
+                    <button id="confirm-rating-btn" disabled onclick="saveRating()" class="btn-arcade text-[16px] w-3/4">CONFIRM STARS</button>
                     <div class="ver-info-text mt-4">v2.2.2 Final</div>
                 </div>
                 
