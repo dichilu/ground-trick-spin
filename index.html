@@ -149,13 +149,7 @@
             flex-shrink: 0;
         }
 
-        .btn-lang {
-            background: transparent !important; border: none !important;
-            color: #fff; padding: 10px 20px; font-size: 20px;
-            cursor: pointer; transition: color 0.2s;
-        }
-        @media (min-width: 640px) { .btn-lang { font-size: 28px; } }
-        .btn-lang.active { color: var(--mario-yellow) !important; text-decoration: underline; }
+        /* Removed old btn-lang classes */
 
         .top-marquee {
             display: grid;
@@ -393,20 +387,23 @@
         <div id="setup-overlay" class="overlay">
             <div class="scene-bg" id="setup-bg"></div>
             <div class="relative z-10 w-full max-w-lg flex flex-col items-center py-8">
-                <div class="flex gap-4 sm:gap-8 mb-6 z-[600] justify-center w-full">
-                    <button onclick="changeLang('en')" id="btn-en" class="btn-lang active">ENGLISH</button>
-                    <button onclick="changeLang('zh')" id="btn-zh" class="btn-lang">繁體中文</button>
-                    <button onclick="changeLang('ja')" id="btn-ja" class="btn-lang">日本語</button>
-                </div>
-                <h1 id="title-main" class="mario-title-text uppercase font-black">GROUND<br>TRICK SPIN</h1>
+                <h1 id="title-main" class="mario-title-text uppercase font-black mt-8">GROUND<br>TRICK SPIN</h1>
                 
                 <div class="w-full px-5">
                     <input type="text" id="p1" placeholder="NAME 1 (REQUIRED)" oninput="checkInputs()">
                     <input type="text" id="p2" placeholder="NAME 2 (OPTIONAL)" oninput="checkInputs()">
                     <input type="text" id="p3" placeholder="NAME 3 (OPTIONAL)" oninput="checkInputs()">
+                    <div class="flex items-center justify-between w-full mb-4 bg-black border-4 border-white p-4">
+                        <span id="label-lang-setup" class="text-[10px] text-white uppercase font-bold">LANGUAGE:</span>
+                        <select id="lang-select" onchange="changeLang(this.value)" class="w-32 text-[12px] text-right !m-0 !p-1 !bg-transparent border-0">
+                            <option value="en">ENGLISH</option>
+                            <option value="zh">繁體中文</option>
+                            <option value="ja">日本語</option>
+                        </select>
+                    </div>
                     <div class="flex items-center justify-between w-full mt-2 bg-black border-4 border-white p-4">
                         <span id="label-rounds-setup" class="text-[10px] text-white uppercase font-bold">ROUNDS:</span>
-                        <select id="round-select" class="w-24 text-[12px] !m-0 !p-1 !bg-transparent border-0">
+                        <select id="round-select" class="w-24 text-[12px] text-right !m-0 !p-1 !bg-transparent border-0">
                             <option value="1">1</option><option value="2">2</option>
                             <option value="3" selected>3</option><option value="4">4</option>
                             <option value="5">5</option>
@@ -530,6 +527,7 @@
                 again: "PLAY AGAIN", next: "UP NEXT", ready_btn: "I AM READY!", rounds_label: "ROUNDS:",
                 spin_btn: "SPIN START", status_spin: "MODE SPIN...", status_roll: "ROLLING", status_finish: "FINISH!",
                 your_trick: "YOUR CHALLENGE TRICK IS",
+                lang_label: "LANGUAGE:",
                 tricks: [
                     "FS<br>Nollie 3", "FS<br>Nollie 5", "BS<br>Nollie 3", "BS<br>Nollie 5",
                     "FS Nollie<br>Comp 3", "FS Nollie<br>Comp 5", "BS Nollie<br>Comp 3", "BS Nollie<br>Comp 5",
@@ -546,6 +544,7 @@
                 again: "もう一度", next: "次は...", ready_btn: "準備完了！", rounds_label: "ラウンド数:",
                 spin_btn: "スピン開始", status_spin: "抽選中...", status_roll: "ロール中", status_finish: "完了！",
                 your_trick: "あなたの競技トリックは",
+                lang_label: "言語:",
                 tricks: [
                     "FS<br>ノリー3", "FS<br>ノリー5", "BS<br>ノリー3", "BS<br>ノリー5",
                     "FSノリー<br>コンパス3", "FSノリー<br>コンパス5", "BSノリー<br>コンパス3", "BSノリー<br>コンパス5",
@@ -562,6 +561,7 @@
                 again: "再玩一次", next: "下一位", ready_btn: "我準備好了！", rounds_label: "回合數:",
                 spin_btn: "開始抽取", status_spin: "抽取中...", status_roll: "滾動中", status_finish: "完成！",
                 your_trick: "您的比賽招式是",
+                lang_label: "語言:",
                 tricks: [
                     "FS<br>Nollie 3", "FS<br>Nollie 5", "BS<br>Nollie 3", "BS<br>Nollie 5",
                     "FS Nollie<br>Comp 3", "FS Nollie<br>Comp 5", "BS Nollie<br>Comp 3", "BS Nollie<br>Comp 5",
@@ -579,9 +579,8 @@
         function changeLang(l) {
             lang = l;
             document.body.className = `lang-${l}`;
-            document.getElementById('btn-en').classList.toggle('active', l === 'en');
-            document.getElementById('btn-zh').classList.toggle('active', l === 'zh');
-            document.getElementById('btn-ja').classList.toggle('active', l === 'ja');
+            const ls = document.getElementById('lang-select');
+            if (ls && ls.value !== l) ls.value = l;
             const rt = document.getElementById('rating-text');
             const isMobile = window.innerWidth < 640;
             if (lang === 'en') { rt.style.fontSize = isMobile ? '20px' : '36px'; } 
@@ -595,6 +594,7 @@
             document.getElementById('label-round').innerText = t.round;
             document.getElementById('title-main').innerHTML = t.title;
             document.getElementById('label-rounds-setup').innerText = t.rounds_label;
+            if (document.getElementById('label-lang-setup')) document.getElementById('label-lang-setup').innerText = t.lang_label;
             document.getElementById('setup-start-btn').innerText = t.start;
             document.getElementById('status-label').innerText = t.ready;
             document.getElementById('msg-display').innerText = t.press_spin;
