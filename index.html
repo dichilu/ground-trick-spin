@@ -418,9 +418,16 @@
         <div id="rating-overlay" class="overlay hidden rating-panel">
             <div class="scene-bg" id="rating-bg"></div>
             <div class="relative z-10 flex flex-col items-center w-full">
-                <h3 id="label-complete" class="mario-title-text text-xl uppercase font-bold">TRICK COMPLETE!</h3>
-                <p id="rating-text" class="text-white text-center mb-10 uppercase font-black"></p>
-                <div class="star-rating">
+                
+                <h3 id="label-your-trick" class="text-yellow-400 text-center mb-3 uppercase font-black tracking-widest text-[14px] md:text-[22px]" style="text-shadow: 2px 2px 0 #000;">YOUR CHALLENGE TRICK IS</h3>
+                
+                <div class="bg-black/85 border-4 border-white p-4 md:p-6 mb-8 w-11/12 md:w-4/5 shadow-[0_0_15px_rgba(255,255,255,0.4)] rounded-sm">
+                    <p id="rating-text" class="text-white text-center uppercase font-black leading-relaxed" style="text-shadow: 2px 2px 0 #000;"></p>
+                </div>
+                
+                <h3 id="label-complete" class="mario-title-text text-xl uppercase font-bold">TRICK RATING</h3>
+                
+                <div class="star-rating !mt-2">
                     <span class="star-icon" onclick="setStars(1)">★</span>
                     <span class="star-icon" onclick="setStars(2)">★</span>
                     <span class="star-icon" onclick="setStars(3)">★</span>
@@ -515,9 +522,10 @@
             en: {
                 challenger: "CHALLENGER", round: "ROUND", hits: ["1 HIT", "2 COMBO", "3 COMBO"],
                 ready: "READY?", press_spin: "PRESS SPIN", start: "START CHALLENGE",
-                complete: "TRICK COMPLETE!", confirm: "CONFIRM STARS", ranking: "FINAL RANKING",
+                complete: "TRICK RATING", confirm: "CONFIRM STARS", ranking: "FINAL RANKING",
                 again: "PLAY AGAIN", next: "UP NEXT", ready_btn: "I AM READY!", rounds_label: "ROUNDS:",
                 spin_btn: "SPIN START", status_spin: "MODE SPIN...", status_roll: "ROLLING", status_finish: "FINISH!",
+                your_trick: "YOUR CHALLENGE TRICK IS",
                 tricks: [
                     "FS<br>Nollie 3", "FS<br>Nollie 5", "BS<br>Nollie 3", "BS<br>Nollie 5",
                     "FS Nollie<br>Comp 3", "FS Nollie<br>Comp 5", "BS Nollie<br>Comp 3", "BS Nollie<br>Comp 5",
@@ -530,9 +538,10 @@
             ja: {
                 challenger: "チャレンジャー", round: "ラウンド", hits: ["1 ヒット", "2 コンボ", "3 コンボ"],
                 ready: "準備はいい？", press_spin: "スピンを押して", start: "スタート",
-                complete: "トリック完了！", confirm: "確定する", ranking: "最終ランキング",
+                complete: "トリック評価", confirm: "確定する", ranking: "最終ランキング",
                 again: "もう一度", next: "次は...", ready_btn: "準備完了！", rounds_label: "ラウンド数:",
                 spin_btn: "スピン開始", status_spin: "抽選中...", status_roll: "ロール中", status_finish: "完了！",
+                your_trick: "あなたの競技トリックは",
                 tricks: [
                     "FS<br>ノリー3", "FS<br>ノリー5", "BS<br>ノリー3", "BS<br>ノリー5",
                     "FSノリー<br>コンパス3", "FSノリー<br>コンパス5", "BSノリー<br>コンパス3", "BSノリー<br>コンパス5",
@@ -554,8 +563,8 @@
             document.getElementById('btn-ja').classList.toggle('active', l === 'ja');
             const rt = document.getElementById('rating-text');
             const isMobile = window.innerWidth < 640;
-            if (lang === 'en') { rt.style.fontSize = isMobile ? '16px' : '32px'; } 
-            else { rt.style.fontSize = isMobile ? '22px' : '48px'; }
+            if (lang === 'en') { rt.style.fontSize = isMobile ? '20px' : '36px'; } 
+            else { rt.style.fontSize = isMobile ? '24px' : '44px'; }
             updateStaticUI(); AudioSys.beep(); AudioSys.startMarioTheme();
         }
 
@@ -569,6 +578,7 @@
             document.getElementById('status-label').innerText = t.ready;
             document.getElementById('msg-display').innerText = t.press_spin;
             document.getElementById('label-complete').innerText = t.complete;
+            document.getElementById('label-your-trick').innerText = t.your_trick;
             document.getElementById('confirm-rating-btn').innerText = t.confirm;
             document.getElementById('label-ranking').innerText = t.ranking;
             document.getElementById('btn-again').innerText = t.again;
