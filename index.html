@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ground Trick Spin - v2.2.2 Final</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Dela+Gothic+One&family=Noto+Sans+TC:wght@900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
@@ -31,8 +31,8 @@
             overflow: hidden;
         }
 
-        body.lang-ja {
-            font-family: 'Dela Gothic One', cursive;
+        body.lang-ja, body.lang-zh {
+            font-family: 'Dela Gothic One', 'Noto Sans TC', sans-serif;
         }
 
         * {
@@ -97,16 +97,18 @@
         }
 
         #title-main { font-size: 28px; margin-bottom: 20px; }
-        body.lang-ja #title-main { font-size: 40px; -webkit-text-stroke: 6px var(--mario-yellow); letter-spacing: 0px; }
+        body.lang-ja #title-main, body.lang-zh #title-main { font-size: 40px; -webkit-text-stroke: 6px var(--mario-yellow); letter-spacing: 0px; }
 
-        body.lang-ja #label-complete, body.lang-ja #label-ranking {
+        body.lang-ja #label-complete, body.lang-ja #label-ranking,
+        body.lang-zh #label-complete, body.lang-zh #label-ranking {
             font-size: 32px; -webkit-text-stroke: 6px var(--mario-yellow);
         }
 
         @media (min-width: 640px) {
             #title-main { font-size: 60px; -webkit-text-stroke: 12px var(--mario-yellow); margin-bottom: 40px; }
-            body.lang-ja #title-main { font-size: 70px; -webkit-text-stroke: 10px var(--mario-yellow); }
-            body.lang-ja #label-complete, body.lang-ja #label-ranking {
+            body.lang-ja #title-main, body.lang-zh #title-main { font-size: 70px; -webkit-text-stroke: 10px var(--mario-yellow); }
+            body.lang-ja #label-complete, body.lang-ja #label-ranking,
+            body.lang-zh #label-complete, body.lang-zh #label-ranking {
                 font-size: 60px; -webkit-text-stroke: 10px var(--mario-yellow);
             }
         }
@@ -134,11 +136,11 @@
             transform: none !important;
         }
 
-        body.lang-ja .btn-arcade { font-size: 24px; padding: 24px 10px; }
+        body.lang-ja .btn-arcade, body.lang-zh .btn-arcade { font-size: 24px; padding: 24px 10px; }
 
         @media (min-width: 640px) {
             .btn-arcade { font-size: 24px; padding: 24px; border-width: 8px; }
-            body.lang-ja .btn-arcade { font-size: 36px; padding: 30px 15px; }
+            body.lang-ja .btn-arcade, body.lang-zh .btn-arcade { font-size: 36px; padding: 30px 15px; }
         }
 
         .ver-info-text {
@@ -179,11 +181,11 @@
             padding: 2px;
         }
         
-        body.lang-ja .mode-box { font-size: 14px; font-weight: 900; }
+        body.lang-ja .mode-box, body.lang-zh .mode-box { font-size: 14px; font-weight: 900; }
 
         @media (min-width: 640px) {
             .mode-box { font-size: 16px; border-width: 4px; padding: 6px; }
-            body.lang-ja .mode-box { font-size: 26px; }
+            body.lang-ja .mode-box, body.lang-zh .mode-box { font-size: 26px; }
         }
 
         .mode-box.active { background: #fff !important; color: #000 !important; z-index: 10; }
@@ -233,11 +235,11 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        body.lang-ja .trick-inner { font-size: 16px; line-height: 1.15; font-weight: 900; }
+        body.lang-ja .trick-inner, body.lang-zh .trick-inner { font-size: 16px; line-height: 1.15; font-weight: 900; }
 
         @media (min-width: 640px) {
             .trick-inner { font-size: 20px; }
-            body.lang-ja .trick-inner { font-size: 24px; }
+            body.lang-ja .trick-inner, body.lang-zh .trick-inner { font-size: 24px; }
         }
 
         .box-red { background: #9c0c16; }
@@ -278,7 +280,7 @@
             font-family: 'Press Start 2P', cursive; background: #000; border: 4px solid #555;
             padding: 8px; color: #fff; text-align: center;
         }
-        body.lang-ja .led-panel { font-family: 'Dela Gothic One', cursive; }
+        body.lang-ja .led-panel, body.lang-zh .led-panel { font-family: 'Dela Gothic One', 'Noto Sans TC', sans-serif; }
         #hud-name { font-size: 12px; min-width: 100px; }
         @media (min-width: 640px) { #hud-name { font-size: 24px; min-width: 200px; } }
 
@@ -300,7 +302,8 @@
             padding: 15px; font-size: 12px; width: 100%; outline: none; margin-bottom: 15px;
             text-align: center; appearance: none; -webkit-appearance: none; border-radius: 0;
         }
-        body.lang-ja input, body.lang-ja select { font-size: 18px; }
+        body.lang-ja input, body.lang-ja select,
+        body.lang-zh input, body.lang-zh select { font-size: 18px; }
 
         .star-rating { display: flex; gap: 10px; margin: 25px 0; z-index: 10; }
         /* 將空星星的顏色改為淺灰色，使其在深色背景上更明顯 */
@@ -314,8 +317,8 @@
             width: 100%; border-collapse: collapse; margin-top: 20px; 
             font-size: 10px; color: #fff; background: rgba(0,0,0,0.9); z-index: 10;
         }
-        body.lang-ja .leaderboard { font-size: 14px; }
-        @media (min-width: 640px) { body.lang-ja .leaderboard { font-size: 18px; } }
+        body.lang-ja .leaderboard, body.lang-zh .leaderboard { font-size: 14px; }
+        @media (min-width: 640px) { body.lang-ja .leaderboard, body.lang-zh .leaderboard { font-size: 18px; } }
         .leaderboard th, .leaderboard td { border: 2px solid #fff; padding: 10px; text-align: center; }
 
         .scene-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
@@ -392,6 +395,7 @@
             <div class="relative z-10 w-full max-w-lg flex flex-col items-center py-8">
                 <div class="flex gap-4 sm:gap-8 mb-6 z-[600] justify-center w-full">
                     <button onclick="changeLang('en')" id="btn-en" class="btn-lang active">ENGLISH</button>
+                    <button onclick="changeLang('zh')" id="btn-zh" class="btn-lang">繁體中文</button>
                     <button onclick="changeLang('ja')" id="btn-ja" class="btn-lang">日本語</button>
                 </div>
                 <h1 id="title-main" class="mario-title-text uppercase font-black">GROUND<br>TRICK SPIN</h1>
@@ -550,6 +554,22 @@
                     "FSノリー<br>ロック", "BSノリー<br>ロック"
                 ],
                 title: "グラトリ<br>スピン"
+            },
+            zh: {
+                challenger: "挑戰者", round: "回合", hits: ["1 招", "2 連招", "3 連招"],
+                ready: "準備好了嗎？", press_spin: "按下開始", start: "開始挑戰",
+                complete: "招式評分", confirm: "確認星數", ranking: "最終排名",
+                again: "再玩一次", next: "下一位", ready_btn: "我準備好了！", rounds_label: "回合數:",
+                spin_btn: "開始抽取", status_spin: "抽取中...", status_roll: "滾動中", status_finish: "完成！",
+                your_trick: "您的比賽招式是",
+                tricks: [
+                    "FS<br>Nollie 3", "FS<br>Nollie 5", "BS<br>Nollie 3", "BS<br>Nollie 5",
+                    "FS Nollie<br>Comp 3", "FS Nollie<br>Comp 5", "BS Nollie<br>Comp 3", "BS Nollie<br>Comp 5",
+                    "Drive<br>Spin 5", "Owen", "Tochi", "Andy 3", "Andy 5", "Sashi 3", "Sashi 5", "Sone 3", "Sone 5",
+                    "Kami<br>Kaze", "Tsubame", "MFM", "Kirochin", "Dorufin", "Press", "Heel B<br>Compass",
+                    "FS Nollie<br>Lock", "BS Nollie<br>Lock"
+                ],
+                title: "平花<br>大轉盤"
             }
         };
 
@@ -560,6 +580,7 @@
             lang = l;
             document.body.className = `lang-${l}`;
             document.getElementById('btn-en').classList.toggle('active', l === 'en');
+            document.getElementById('btn-zh').classList.toggle('active', l === 'zh');
             document.getElementById('btn-ja').classList.toggle('active', l === 'ja');
             const rt = document.getElementById('rating-text');
             const isMobile = window.innerWidth < 640;
